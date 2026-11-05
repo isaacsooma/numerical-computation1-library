@@ -1,26 +1,26 @@
-# Week 2 — Core Implementation — Individual Progress Report
+# Week 2 Progress Report — Linear Algebra Module
+Name: Mwidhu Hamza
+Group: 22 (Numerical Computing Project)
+Assigned Focus: Vector arithmetic, dot products, norms, and matrix-vector compatibility
 
-**Group:** 22 — Numerical Computing 1  
-**Member:** Kirungi Ryan Ahaisibwe  
-**Assigned area:** Core N-dimensional arrays and statistical operations
+# What We Did This Week
+Moved from planning into active implementation for our individual modules.
+Focused on building out the vector math components, ensuring they tie cleanly into the shared NDArray interface.
 
-## Weekly objective
-The project moved from planning into implementation. Each member's assigned module was to be developed against the shared array interface, with small known-answer examples and validation of invalid inputs.
+# Design & Technical Approach
+Vector Operations: Implemented core logic for vector arithmetic, dot products (sum of pairwise products), and Euclidean norms (square root of sum of squares).
+Validation & Safety: Added checks for matrix-vector multiplication to ensure input vector lengths match column counts, and implemented checks to reject incompatible dimensions or invalid inputs before any data access occurs.
 
-## Individual work focus
-The core representation needs a shape and flattened data buffer. Construction must ensure that the number of stored values agrees with the product of the dimensions. Shape, rank and size metadata, row-major element order and coordinate access form the common contract used by indexing, reductions, broadcasting and matrix routines.
+# Code Structure: Maintained a clean split between header (.hpp) declarations and source (.cpp) definitions, adhering to our agreed-upon namespaces and exception policies.
 
-## Implementation plan and technical approach
-The module was to be developed as a focused C++ component with declarations in a header and definitions in a source file. Its public functions should use the shared array conventions and reject invalid inputs before accessing data. A key statistical decision is whether standard deviation is population or sample. The reviewed implementation uses population standard deviation. Correlation requires equal-length inputs and is undefined for zero-variance data; the reviewed code now throws a domain error for that case. Quantile and percentile must use a stated interpolation convention.
+# Testing Plan
+Planned small, hand-checkable unit tests using known-answer arrays.
+Focused testing scope on both normal valid cases and edge cases (such as dimension mismatches or invalid shapes) to verify correct numerical output, element order, and error behavior.
 
-## Testing planned
-Use small arrays with hand-checkable expected results. Include ordinary valid cases and boundary or incompatible-input cases relevant to this module. Check not only numerical values but also result shape, element order and error behaviour where applicable.
+# Challenges & Risks
+Consistency: Maintaining strict alignment across shared conventions like array interfaces, namespaces, error handling, and axis numbering across different team modules. Any discrepancies need immediate team coordination before full integration.
 
-## Dependencies and challenges
-The shared NDArray interface, common namespace, function names, axis numbering and exception policy must remain consistent. Any unresolved convention should be agreed with the core-array owner and affected module members before integration.
-
-## Next steps for Week 3
-Complete the main numerical logic, expand edge-case tests, and verify that the module compiles and works with the shared array representation.
-
-## Status qualification
-The supplied weekly report describes implementation targets for the group; it does not provide individual commit history or per-member test logs. The statements above therefore describe this member's assigned work and technical approach, not an invented claim about specific commits or test execution.
+# Plan for Week 3
+Finish up the main numerical logic for the vector module.
+Expand the test suite with edge cases and integration checks.
+Verify clean compilation and successful integration with the shared array representation.
