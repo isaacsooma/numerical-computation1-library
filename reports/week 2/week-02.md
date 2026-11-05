@@ -1,26 +1,34 @@
-# Week 2 Progress Report — Linear Algebra Module
-Name: Mwidhu Hamza
-Group: 22 (Numerical Computing Project)
-Assigned Focus: Vector arithmetic, dot products, norms, and matrix-vector compatibility
+# Week 2 — Core Implementation
 
-# What We Did This Week
-Moved from planning into active implementation for our individual modules.
-Focused on building out the vector math components, ensuring they tie cleanly into the shared NDArray interface.
+**Group:** 22 — Numerical Computing 1  
+**Member:** Kasajja Isaac Kayimbazi  
+**Assigned area:** Matrix operations
 
-# Design & Technical Approach
-Vector Operations: Implemented core logic for vector arithmetic, dot products (sum of pairwise products), and Euclidean norms (square root of sum of squares).
-Validation & Safety: Added checks for matrix-vector multiplication to ensure input vector lengths match column counts, and implemented checks to reject incompatible dimensions or invalid inputs before any data access occurs.
+## Weekly objective
+Move from planning into implementation: build the core matrix operations against the shared array interface, with small known-answer examples and validation of invalid inputs.
 
-# Code Structure: Maintained a clean split between header (.hpp) declarations and source (.cpp) definitions, adhering to our agreed-upon namespaces and exception policies.
+## Work this week
+The module was developed as a focused C++ component, with declarations in a header and definitions in a source file. Its public functions follow the shared array conventions and reject invalid inputs before touching any data.
 
-# Testing Plan
-Planned small, hand-checkable unit tests using known-answer arrays.
-Focused testing scope on both normal valid cases and edge cases (such as dimension mismatches or invalid shapes) to verify correct numerical output, element order, and error behavior.
+| Operation | Shape requirement | Result |
+|-----------|------------------|--------|
+| Addition / subtraction | Both operands have identical shape | Same shape as the inputs |
+| Hadamard product | Both operands have identical shape | Same shape, element-wise product |
+| Multiplication | **A** is *m × n*, **B** is *n × p* | *m × p* |
+| Transpose | Any two-dimensional matrix | Rows and columns swapped |
 
-# Challenges & Risks
-Consistency: Maintaining strict alignment across shared conventions like array interfaces, namespaces, error handling, and axis numbering across different team modules. Any discrepancies need immediate team coordination before full integration.
+### Matrix multiplication
+Each output entry is a row-by-column dot product:
 
-# Plan for Week 3
-Finish up the main numerical logic for the vector module.
-Expand the test suite with edge cases and integration checks.
-Verify clean compilation and successful integration with the shared array representation.
+> C(i, j) = Σₖ A(i, k) · B(k, j)
+
+Because the output shape differs from the input shapes, I treated multiplication as the operation most likely to hide errors. It is checked with non-square compatible matrices as well as square ones, and a mismatch between the inner dimensions is rejected before any element is read.
+
+## Testing
+Tests use small matrices with hand-checkable answers. For each operation they cover ordinary valid cases and incompatible-input cases, and they check not only the numerical values but also the **result shape**, **element order** and **error behaviour**.
+
+## Dependencies and challenges
+The module relies on the shared `NDArray` interface, the common namespace, function naming and the exception policy staying consistent. Any convention that was still open was settled with the core-array owner and the affected module members before integration.
+
+## Plan for Week 3
+Complete the more advanced numerical routines, expand the edge-case tests, and confirm that the module compiles and works with the shared array representation.
