@@ -1,26 +1,21 @@
-# Week 1 — Planning and Design — Individual Progress Report
+# Week 1 Progress Report — Linear Algebra Module
+Name: Mwidhu Hamza
+Group: 22 (Numerical Computing Project)
+Assigned Focus: Vector arithmetic, dot products, and vector-matrix compatibility
 
-**Group:** 22 — Numerical Computing 1  
-**Member:** Kirungi Ryan Ahaisibwe  
-**Assigned area:** Core N-dimensional arrays and statistical operations
+# What We Did This Week
+Reviewed the project repository structure and broke down the core requirements with the team.
+Agreed on shared conventions for our NDArray interface—including row-major order, indexing rules, shape checks, and how we handle errors and exceptions.
+Split up the workload: I'm taking care of the vector operations side, while coordinating closely with team members handling matrices.
 
-## Weekly objective
-The group reviewed the assignment, inspected the repository structure, divided responsibilities and discussed shared conventions for the NDArray interface, indexing, shapes, errors and tests.
+# Design & Technical Decisions
+Interface Alignment: Decided that vector operations must rely strictly on the core NDArray class dimensions to prevent mismatch bugs during arithmetic.
+Structure: Planned out our header (.hpp) and implementation (.cpp) files, keeping everything modular so we can write focused unit tests and hook it up to CMake smoothly.
+ # Challenges & Risks
+Interface Consistency: The biggest risk early on is mismatched assumptions between different modules (e.g., how shapes are verified or how floating-point numbers are compared). We need strict error checks for invalid dimensions.
 
-## Individual contribution and planning
-The group initially chose statistics as a manageable starting point because members were familiar with the concepts. The original first-week note records that members wrote individual statistics programs and declarations, while the final allocation identifies Kirungi as the owner of the NDArray core and confirms that the statistical operations had already been completed by this member. The core-array responsibility therefore became the foundation for the other modules.
-
-## Assigned module: scope and design decisions
-NDArray core, multidimensional shape/storage, element access, and completed statistics. The first-week design work was to identify dependencies on the shared NDArray, agree on naming and error-handling conventions, and plan a header, implementation file, focused tests and example for the module.
-
-## Work in progress
-The group was still finalising exact header names, function signatures, axis conventions, floating-point tolerances and local CMake builds. No module-specific implementation or successful build is claimed here unless supported by the original first-week note.
-
-## Challenges and risks
-The main risk was interface mismatch between modules. This member's work depends on agreement about array shape, row-major element order, indexing and error behaviour. Numerical functions also require consistent policies for invalid inputs and floating-point comparisons.
-
-## Plan for Week 2
-Begin implementing the assigned module against the agreed interface, add small known-answer tests and report any dependency or design issue early.
-
-## Evidence and reporting note
-The original Week 1 group note says the team began with statistics, with individual statistical programs and declarations written by members; it also says the library had not yet been compiled or tested at that point. The final allocation identifies the module ownership shown above. This report distinguishes that early group activity from later module-specific work.
+# Build Setup: We are still ironing out local CMake configurations and making sure our test suites build cleanly.
+# Plan for Week 2
+Start writing the actual C++ implementation for the vector module.
+Set up basic, known-answer unit tests to verify vector math functions.
+Test the local CMake build and resolve any integration or dependency issues early.
