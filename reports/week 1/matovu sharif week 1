@@ -1,0 +1,40 @@
+Week 1 — Planning and Design 
+Individual Progress Report
+Group: 22 — Numerical Computing 1
+Member: Matovu Sharif
+Assigned area: Indexing, slicing and reshaping
+Weekly objective
+The group reviewed the assignment, inspected the repository structure, divided responsibilities and discussed shared conventions for the NDArray interface, indexing, shapes, errors and tests.
+Individual contribution and planning
+The group needed common zero-based indexing, row-major storage and a shared NDArray interface before indexing work could integrate reliably. The assigned responsibility was defined as navigation and shape transformation rather than ownership of the underlying storage.
+Assigned module: scope and design decisions
+Single/multi-index access, slicing, shape queries, reshape, and index/shape validation. The first-week design work was to identify dependencies on the shared NDArray, agree on naming and error-handling conventions, and plan a header, implementation file, focused tests and example for the module.
+Work in progress
+The first task was to make research concerning my topics and come to an understanding of the concepts.
+indexing;
+In C++, indexing is zero-based, meaning the first element of a collection is always at index 0, and the last element is at index size - 1. Indexing allows you to read or modify elements within arrays, strings, and standard library containers like std :: vector.
+It also allows us to access different parts of arrays, strings ,vectors  even in classes.
+
+Slicing;
+In C++, "slicing" usually refers to object slicing. When a derived class object is assigned to a base class object in C++, the derived class object's extra attributes are sliced off (not considered) to generate the base class object; and this whole process is termed object slicing. In simple words, when extra components of a derived class are sliced or not used and the priority is given to the base class's object this is termed object slicing. 
+In C++, a derived class object can be assigned to a base class object, but the other way is not possible. To tackle this slicing problem we can use a dynamic pointer.
+Moreover, object slicing happens when a derived class object is assigned to a base class object, and additional attributes of a derived class object are sliced off to form the base class object.
+
+
+Reshaping;
+
+Unlike languages like Python (with NumPy), C++ does not have a built-in reshape function for standard arrays or vectors.
+How you achieve reshaping in C++ depends on whether you want to rearrange elements into a new 2D structure, create a 2D view over a 1D container, or use a dedicated linear algebra library.
+1. Manual Reshaping (The Standard Approach)
+If you have a 1D vector (or a flattened 2D vector) and want to physically redistribute its elements into a new 2D grid structure (std::vector<std::vector<T>>), you can use simple index arithmetic.
+2.The Modern C++ Way: (std::mdspan)
+If you do not want to allocate new memory or copy data, you can create a multidimensional view over existing flat contiguous memory using std::mdspan. This mimics NumPy's behavior of returning a view instead of a copy
+I chose the method 2 since it was easy to understand
+
+Challenges and risks
+The main risk was interface mismatch between modules. This member's work depends on agreement about array shape, row-major element order, indexing and error behaviour. Numerical functions also require consistent policies for invalid inputs and floating-point comparisons.
+Difficulty in understanding slicing since not much videos were available
+Plan for Week 2
+Begin implementing the assigned module against the agreed interface, add small known-answer tests and report any dependency or design issue early.
+Evidence and reporting note
+The original Week 1 group note says the team began with statistics, with individual statistical programs and declarations written by members; it also says the library had not yet been compiled or tested at that point. The final allocation identifies the module ownership shown above. 
