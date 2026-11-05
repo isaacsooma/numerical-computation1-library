@@ -1,21 +1,31 @@
-# Week 1 Progress Report — Linear Algebra Module
-Name: Mwidhu Hamza
-Group: 22 (Numerical Computing Project)
-Assigned Focus: Vector arithmetic, dot products, and vector-matrix compatibility
+# Week 1 — Planning and Design
 
-# What We Did This Week
-Reviewed the project repository structure and broke down the core requirements with the team.
-Agreed on shared conventions for our NDArray interface—including row-major order, indexing rules, shape checks, and how we handle errors and exceptions.
-Split up the workload: I'm taking care of the vector operations side, while coordinating closely with team members handling matrices.
+**Group:** 22 — Numerical Computing 1  
+**Member:** Kasajja Isaac Kayimbazi  
+**Assigned area:** Matrix operations
 
-# Design & Technical Decisions
-Interface Alignment: Decided that vector operations must rely strictly on the core NDArray class dimensions to prevent mismatch bugs during arithmetic.
-Structure: Planned out our header (.hpp) and implementation (.cpp) files, keeping everything modular so we can write focused unit tests and hook it up to CMake smoothly.
- # Challenges & Risks
-Interface Consistency: The biggest risk early on is mismatched assumptions between different modules (e.g., how shapes are verified or how floating-point numbers are compared). We need strict error checks for invalid dimensions.
+## Weekly objective
+Understand the assignment, study the repository structure, agree the division of work within the group, and settle the conventions the modules would share: the `NDArray` interface, indexing, shapes, error handling and testing.
 
-# Build Setup: We are still ironing out local CMake configurations and making sure our test suites build cleanly.
-# Plan for Week 2
-Start writing the actual C++ implementation for the vector module.
-Set up basic, known-answer unit tests to verify vector math functions.
-Test the local CMake build and resolve any integration or dependency issues early.
+## Starting point
+The group began with statistics. Members wrote individual statistical programs and declarations, and at the end of the week the library had not yet been compiled or tested as a whole. The final allocation then assigned me the **matrix operations** module, which complements Hamza's vector and linear-algebra work.
+
+## Module scope
+| Group | Operations |
+|-------|-----------|
+| Arithmetic | Addition, subtraction, multiplication |
+| Transformations | Transpose and related matrix transformations |
+
+## Design decisions
+- **Shared representation.** Matrix functions build on the common `NDArray` rather than defining a separate matrix type, so results can be passed freely between modules.
+- **Validate first.** Dimensions are checked before any data is accessed, so an incompatible call fails cleanly instead of reading out of range.
+- **Multiplication rule.** For an *m × n* matrix **A** and an *n × p* matrix **B**, the product is *m × p*, and each entry is the dot product of a row of **A** with a column of **B**. Incompatible inner dimensions are rejected.
+- **Consistent errors.** Invalid input is reported through exceptions, following the policy agreed with the group.
+- **Floating-point comparison.** Tests compare values within a tolerance ε instead of using exact equality.
+- **Planned layout.** A header for declarations, a source file for definitions, focused tests and a short usage example.
+
+## Challenges and risks
+The main risk was an interface mismatch between modules. My work depends on the group agreeing on array shape, row-major element order, indexing and error behaviour, and on consistent policies for invalid input and floating-point comparison. Header names, function signatures, axis conventions and local CMake builds were still being finalised at the end of the week.
+
+## Plan for Week 2
+Start implementing the module against the agreed interface, add small known-answer tests, and raise any dependency or design issue with the core-array owner early.
